@@ -7,7 +7,7 @@
       <transition appear name="fade">
         <p>Este es un formulario para poder determinar si tienes COVID-19</p>
       </transition>
-      <v-btn x-large>Empezar</v-btn>
+      <v-btn x-large nuxt to="/form">Empezar</v-btn>
     </div>
   </div>
 </template>
