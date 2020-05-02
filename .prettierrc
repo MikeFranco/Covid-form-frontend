@@ -1,5 +1,13 @@
 {
-  "semi": false,
-  "arrowParens": "always",
-  "singleQuote": true
+  "useTabs": false,
+  "tabWidth": 2,
+  "trailingComma": "none",
+  "vueIndentScriptAndStyle": false,
+  "quoteProps": "as-needed",
+  "semi": true,
+  "bracketSpacing": true,
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "htmlWhitespaceSensitivity": "strict",
+  "endOfLine": "auto"
 }
