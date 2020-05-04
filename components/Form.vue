@@ -1,28 +1,83 @@
 <template>
   <v-app>
     <v-container fluid class="background">
-      <div>
-        <v-layout row wrap justify-center align-center class="align-text">
-          <v-flex md4>
-            <h3> ¿Tienes temperatura de más de 38°C?</h3>
-          </v-flex>
-        </v-layout>
-        <v-layout row wrap justify-center align-center class="layout">
-          <v-flex md1>
-            <v-radio-group v-model="temperature">
-              <v-radio color="red" label="Si" value="5" class="radio"></v-radio>
-              <v-radio color="red" label="No" value="0" class="radio"></v-radio>
-            </v-radio-group>
-          </v-flex>
-        </v-layout>
-        <v-layout row wrap justify-center align-center class="layout">
-          <v-flex md3>
-            <v-btn color="white" outlined @click="questionNumber++"
-              >Siguiente pregunta</v-btn
-            >
-          </v-flex>
-        </v-layout>
-      </div>
+      <transition
+        enter-active-class="animated fadeIn"
+        leave-active-class="animated fadeOut"
+      >
+        <div v-show="questionNumber === 1" class="page">
+          <v-layout row wrap justify-center align-center class="align-text">
+            <v-flex md4>
+              <h3> ¿Tienes temperatura de más de 38°C?</h3>
+            </v-flex>
+          </v-layout>
+          <v-layout row wrap justify-center align-center class="layout">
+            <v-flex md1>
+              <v-radio-group v-model="temperature">
+                <v-radio
+                  color="red"
+                  label="Si"
+                  value="5"
+                  class="radio"
+                ></v-radio>
+                <v-radio
+                  color="red"
+                  label="No"
+                  value="0"
+                  class="radio"
+                ></v-radio>
+              </v-radio-group>
+            </v-flex>
+          </v-layout>
+          <v-layout row wrap justify-center align-center class="layout">
+            <v-flex md3>
+              <v-btn color="white" outlined @click="questionNumber++"
+                >Siguiente pregunta</v-btn
+              >
+            </v-flex>
+          </v-layout>
+        </div>
+      </transition>
+      <transition
+        enter-active-class="animated fadeIn"
+        leave-active-class="animated fadeOut"
+      >
+        <div v-show="questionNumber === 2" class="page">
+          <v-layout row wrap justify-center align-center class="align-text">
+            <v-flex md4>
+              <h3>¿Tienes tos seca?</h3>
+            </v-flex>
+          </v-layout>
+          <v-layout row wrap justify-center align-center class="layout">
+            <v-flex md1>
+              <v-radio-group v-model="dryCough">
+                <v-radio
+                  color="red"
+                  label="Si"
+                  value="5"
+                  class="radio"
+                ></v-radio>
+                <v-radio
+                  color="red"
+                  label="No"
+                  value="0"
+                  class="radio"
+                ></v-radio>
+              </v-radio-group>
+            </v-flex>
+          </v-layout>
+          <v-layout row wrap justify-center align-center class="layout">
+            <v-flex md3>
+              <v-btn color="white" outlined @click="questionNumber++"
+                >Siguiente pregunta</v-btn
+              >
+            </v-flex>
+          </v-layout>
+        </div>
+      </transition>
+      <v-btn color="white" outlined @click="questionNumber = 1"
+        >Reiniciar</v-btn
+      >
     </v-container>
   </v-app>
 </template>
@@ -32,7 +87,8 @@ export default {
   data() {
     return {
       questionNumber: 1,
-      temperature: '0'
+      temperature: '0',
+      dryCough: '0'
     };
   }
 };
@@ -71,5 +127,10 @@ h3 {
 
 .layout {
   margin-top: 40px;
+}
+
+.page {
+  position: fixed;
+  width: inherit;
 }
 </style>
