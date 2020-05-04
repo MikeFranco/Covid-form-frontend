@@ -128,7 +128,9 @@
         <div v-show="questionNumber === 11" class="page layout">
           <v-layout row wrap justify-center align-center class="align-text">
             <v-flex md4>
-              <v-btn color="white" outlined x-large>Obtener resultados</v-btn>
+              <v-btn color="white" outlined x-large @click="getResults"
+                >Obtener resultados</v-btn
+              >
             </v-flex>
           </v-layout>
         </div>
@@ -147,19 +149,20 @@ export default {
   mixins: [answers],
   data() {
     return {
-      questionNumber: 1,
+      questionNumber: 11,
       answers: {
-        temperature: '0',
-        dryCough: '0',
-        headache: '0',
-        difficultyBreathing: '0',
-        runnyNose: '0',
-        musclePain: '0',
-        soreThroat: '0',
-        jointPain: '0',
-        chestPain: '0',
-        conjunctivitis: '0'
-      }
+        temperature: 0,
+        dryCough: 0,
+        headache: 0,
+        difficultyBreathing: 0,
+        runnyNose: 0,
+        musclePain: 0,
+        soreThroat: 0,
+        jointPain: 0,
+        chestPain: 0,
+        conjunctivitis: 0
+      },
+      result: 0
     };
   },
   methods: {
@@ -167,6 +170,12 @@ export default {
       const answerKey = this.getAnswerKey(this.questionNumber);
       this.answers[answerKey] = answer;
       this.questionNumber += 1;
+    },
+    getResults() {
+      this.result = Object.entries(this.answers).reduce(
+        (carry, [key, value]) => (carry += Number(value)),
+        0
+      );
     }
   }
 };
