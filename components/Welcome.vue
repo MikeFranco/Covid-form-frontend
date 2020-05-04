@@ -1,49 +1,70 @@
 <template>
-  <div class="wallpaper">
-    <div class="welcome-text">
-      <transition
-        enter-active-class="animated fadeIn"
-        leave-active-class="animated fadeOut"
-      >
-        <h1 v-show="show">¡Bienvenido!</h1>
-      </transition>
-      <transition
-        enter-active-class="animated fadeIn"
-        leave-active-class="animated fadeOut"
-      >
-        <p v-show="show">
-          Este es un formulario para poder determinar si tienes COVID-19
-        </p>
-      </transition>
-      <transition
-        enter-active-class="animated fadeIn"
-        leave-active-class="animated fadeOut"
-      >
-        <v-btn v-show="show" x-large @click="show = !show">Empezar</v-btn>
-      </transition>
-    </div>
-    <div v-show="!show" class="form" transition="expand">
-      <Form :show="show" />
+  <div>
+    <div class="wallpaper">
+      <div class="welcome-text">
+        <transition
+          enter-active-class="animated fadeIn"
+          leave-active-class="animated fadeOut"
+        >
+          <h1>¡Bienvenido!</h1>
+        </transition>
+        <transition
+          enter-active-class="animated fadeIn"
+          leave-active-class="animated fadeOut"
+        >
+          <p>
+            Este es un formulario para poder determinar si tienes COVID-19
+          </p>
+        </transition>
+        <transition
+          enter-active-class="animated fadeIn"
+          leave-active-class="animated fadeOut"
+        >
+          <v-btn x-large to="/form">Empezar</v-btn>
+        </transition>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Form from './form-cmpnts/Form';
-export default {
-  components: {
-    Form
-  },
-  data() {
-    return {
-      show: true
-    };
-  }
-};
+export default {};
 </script>
 
 <style>
+/* TRANSITIONS from animate css*/
 @import 'https://cdn.jsdelivr.net/npm/animate.css@3.5.1';
+
+.wallpaper {
+  background-image: url('../assets/covid-19.png');
+  background-size: cover;
+  min-height: 956px;
+  max-height: 956px;
+  color: white;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.welcome-text {
+  padding-left: 20px;
+  margin: 400px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.welcome-text h1 {
+  font-size: 50px;
+}
+
+.welcome-text p {
+  font-size: 20px;
+  margin: 2.5%;
+}
+
+.page {
+  position: fixed;
+  width: inherit;
+}
 
 /* always present */
 .expand-transition {

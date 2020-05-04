@@ -1,11 +1,14 @@
 <template>
   <section>
-    <h1>PRUEBA DEL FORM router view</h1>
+    <Form />
   </section>
 </template>
 
 <script>
-export default {};
+import Form from '@/components/Form.vue';
+export default {
+  components: {
+    Form
+  }
+};
 </script>
-
-<style></style>
