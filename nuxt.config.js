@@ -57,6 +57,7 @@ export default {
   proxy: {
     '/back': {
       target: 'http://localhost:5001',
+      // target: 'url del back',
       pathRewrite: {
         '^/back': ''
       },
