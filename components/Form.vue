@@ -180,12 +180,10 @@ export default {
         answers: this.answers,
         result: this.result
       };
-      this.$axios
-        .post('/back/posts', body)
+      this.$axios.post('/back/posts', body)
         .then(response => this.$noty.success('Datos guardados correctamente'))
         .catch(error => {
           this.$noty.error('Ocurrió un error');
-          // eslint-disable-next-line no-console
           console.error(error);
         });
     }
