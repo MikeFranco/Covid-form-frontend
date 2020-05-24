@@ -125,12 +125,38 @@
         enter-active-class="animated bounceInLeft"
         leave-active-class="animated fadeOut"
       >
-        <div v-show="questionNumber === 11" class="page layout">
+        <div v-show="questionNumber === 11" class="page results-btn">
           <v-layout row wrap justify-center align-center class="align-text">
             <v-flex md4>
               <v-btn color="white" outlined x-large @click="getResults"
                 >Obtener resultados</v-btn
               >
+            </v-flex>
+            <v-flex md12 class="results">
+              <div v-if="showResult && result <= 11">
+                <h1> Estás a salvo, quédate en casa</h1>
+              </div>
+              <div
+                v-if="
+                  showResult &&
+                    result > 11 &&
+                    result <= 20 &&
+                    answers.difficultyBreathing == 0
+                "
+              >
+                <h1> Acude a tu médico</h1>
+                <h1>
+                  Antes de salir, ponte cubrebocas y mantén tu sana
+                  distancia</h1
+                >
+              </div>
+              <div v-if="showResult && result >= 21">
+                <h1> Es probable que tengas COVID-19, acude a un hospital</h1>
+                <h1>
+                  Antes de salir, ponte cubrebocas y mantén tu sana
+                  distancia</h1
+                >
+              </div>
             </v-flex>
           </v-layout>
         </div>
@@ -150,6 +176,7 @@ export default {
   data() {
     return {
       questionNumber: 1,
+      showResult: false,
       answers: {
         temperature: 0,
         dryCough: 0,
@@ -176,14 +203,17 @@ export default {
         (carry, [key, value]) => (carry += Number(value)),
         0
       );
+      this.showResult = true;
       const body = {
         answers: this.answers,
         result: this.result
       };
-      this.$axios.post('/back/posts', body)
+      this.$axios
+        .post('/back/posts', body)
         .then(response => this.$noty.success('Datos guardados correctamente'))
         .catch(error => {
           this.$noty.error('Ocurrió un error');
+          // eslint-disable-next-line
           console.error(error);
         });
     }
@@ -214,8 +244,17 @@ h3 {
   margin-top: 4.5%;
 }
 
+.results-btn {
+  margin-top: 2.5%;
+  padding: 0 15% 0 8%;
+}
+
 .page {
   position: fixed;
   width: inherit;
+}
+
+.results {
+  margin-top: 5%;
 }
 </style>
