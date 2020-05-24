@@ -149,7 +149,7 @@ export default {
   mixins: [answers],
   data() {
     return {
-      questionNumber: 11,
+      questionNumber: 1,
       answers: {
         temperature: 0,
         dryCough: 0,
@@ -176,6 +176,18 @@ export default {
         (carry, [key, value]) => (carry += Number(value)),
         0
       );
+      const body = {
+        answers: this.answers,
+        result: this.result
+      };
+      this.$axios
+        .post('/back/posts', body)
+        .then(response => this.$noty.success('Datos guardados correctamente'))
+        .catch(error => {
+          this.$noty.error('Ocurrió un error');
+          // eslint-disable-next-line no-console
+          console.error(error);
+        });
     }
   }
 };

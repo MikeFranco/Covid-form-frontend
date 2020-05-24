@@ -30,7 +30,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [{ src: '~/plugins/vuejs-noty', ssr: false }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -50,7 +50,20 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    proxy: true
+  },
+
+  proxy: {
+    '/back': {
+      target: 'http://localhost:5001',
+      pathRewrite: {
+        '^/back': ''
+      },
+      changeOrigin: false,
+      prependPath: false
+    }
+  },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
