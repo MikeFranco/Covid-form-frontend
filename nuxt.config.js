@@ -3,7 +3,7 @@ import colors from 'vuetify/es5/util/colors';
 export default {
   mode: 'spa',
   router: {
-    base: '/Covid-form-frontend/'
+    base: '/Covid-form-frontend/dist'
   },
   /*
    ** Headers of the page
