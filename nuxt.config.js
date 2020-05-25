@@ -59,8 +59,8 @@ export default {
 
   proxy: {
     '/back': {
-      target: 'http://localhost:5001',
-      // target: 'url del back',
+      //target: 'http://localhost:5001',
+      target: 'https://backend-covid-form.herokuapp.com/',
       pathRewrite: {
         '^/back': ''
       },
