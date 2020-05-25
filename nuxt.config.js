@@ -60,7 +60,7 @@ export default {
   proxy: {
     '/back': {
       //target: 'http://localhost:5001',
-      target: 'https://backend-covid-form.herokuapp.com/',
+      target: 'https://covid-form-backend.herokuapp.com/',
       pathRewrite: {
         '^/back': ''
       },
